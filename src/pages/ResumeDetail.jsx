@@ -76,116 +76,164 @@ export default function ResumeDetail() {
   if (!resume) return null;
 
   return (
-    <div className="page">
+    <div className="page resume-detail">
       <div className="page-header">
-        <h1>{resume.title}</h1>
+        <div>
+          <h1>{resume.title}</h1>
+          <p className="muted">View, download, and tailor this CV for specific roles.</p>
+        </div>
         <div className="actions">
-          <Link to={`/resumes/${id}/edit`} className="btn">Edit</Link>
-          <button type="button" onClick={handleDelete} className="btn danger">Delete</button>
+          <Link to={`/resumes/${id}/edit`} className="btn">
+            Edit
+          </Link>
+          <button type="button" onClick={handleDelete} className="btn danger">
+            Delete
+          </button>
         </div>
       </div>
       {error && <p className="form-error">{error}</p>}
 
-      <p className="description">{resume.description}</p>
+      <section className="resume-detail-card">
+        <p className="description">{resume.description}</p>
 
-      {resume.workExperiences?.length > 0 && (
-        <section>
-          <h2>Work experience</h2>
-          <ul className="detail-list">
-            {resume.workExperiences.map((w) => (
-              <li key={w.id}>
-                <strong>{w.position}</strong> at {w.company}
-                <span className="muted"> {w.startDate?.slice(0, 10)} – {w.endDate ? w.endDate.slice(0, 10) : 'Present'}</span>
-                <ul>
-                  {(w.description || []).map((d, i) => <li key={i}>{d}</li>)}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+        {resume.workExperiences?.length > 0 && (
+          <section>
+            <h2>Work experience</h2>
+            <ul className="detail-list">
+              {resume.workExperiences.map((w) => (
+                <li key={w.id}>
+                  <strong>{w.position}</strong> at {w.company}
+                  <span className="muted">
+                    {' '}
+                    {w.startDate?.slice(0, 10)} – {w.endDate ? w.endDate.slice(0, 10) : 'Present'}
+                  </span>
+                  <ul>
+                    {(w.description || []).map((d, i) => (
+                      <li key={i}>{d}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-      {resume.educations?.length > 0 && (
-        <section>
-          <h2>Education</h2>
-          <ul className="detail-list">
-            {resume.educations.map((e) => (
-              <li key={e.id}>
-                <strong>{e.degree} {e.fieldOfStudy}</strong> — {e.school}
-                <span className="muted"> {e.startDate?.slice(0, 10)} – {e.endDate?.slice(0, 10) || 'Present'}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+        {resume.educations?.length > 0 && (
+          <section>
+            <h2>Education</h2>
+            <ul className="detail-list">
+              {resume.educations.map((e) => (
+                <li key={e.id}>
+                  <strong>
+                    {e.degree} {e.fieldOfStudy}
+                  </strong>{' '}
+                  — {e.school}
+                  <span className="muted">
+                    {' '}
+                    {e.startDate?.slice(0, 10)} – {e.endDate?.slice(0, 10) || 'Present'}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-      {resume.skills?.length > 0 && (
-        <section>
-          <h2>Skills</h2>
-          <p>{resume.skills.join(', ')}</p>
-        </section>
-      )}
+        {resume.skills?.length > 0 && (
+          <section>
+            <h2>Skills</h2>
+            <p>{resume.skills.join(', ')}</p>
+          </section>
+        )}
 
-      {resume.languages?.length > 0 && (
-        <section>
-          <h2>Languages</h2>
-          <ul>
-            {resume.languages.map((l) => (
-              <li key={l.id}>{l.name} — {l.level}</li>
-            ))}
-          </ul>
-        </section>
-      )}
+        {resume.languages?.length > 0 && (
+          <section>
+            <h2>Languages</h2>
+            <ul>
+              {resume.languages.map((l) => (
+                <li key={l.id}>
+                  {l.name} — {l.level}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-      {resume.projects?.length > 0 && (
-        <section>
-          <h2>Projects</h2>
-          <ul className="detail-list">
-            {resume.projects.map((p) => (
-              <li key={p.id}>
-                <strong>{p.title}</strong>
-                {p.link && <a href={p.link} target="_blank" rel="noreferrer"> Link</a>}
-                <p>{p.description}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      <hr />
-
-      <section>
-        <h2>Download PDF</h2>
-        <select value={template} onChange={(e) => setTemplate(e.target.value)}>
-          <option value="template1">Template 1</option>
-          <option value="template2">Template 2</option>
-          <option value="template3">Template 3</option>
-          <option value="template4">Template 4</option>
-        </select>
-        {' '}
-        <button type="button" onClick={handleDownload} disabled={downloading}>
-          {downloading ? 'Downloading…' : 'Download PDF'}
-        </button>
+        {resume.projects?.length > 0 && (
+          <section>
+            <h2>Projects</h2>
+            <ul className="detail-list">
+              {resume.projects.map((p) => (
+                <li key={p.id}>
+                  <strong>{p.title}</strong>
+                  {p.link && (
+                    <a href={p.link} target="_blank" rel="noreferrer">
+                      {' '}
+                      Link
+                    </a>
+                  )}
+                  <p>{p.description}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </section>
 
-      <section>
-        <h2>Tailor to job description</h2>
-        <form onSubmit={handleTailor} className="form">
-          <label>
-            Job description
-            <textarea
-              value={tailorJobDescription}
-              onChange={(e) => setTailorJobDescription(e.target.value)}
-              rows={4}
-              placeholder="Paste the job posting here…"
-              required
-            />
-          </label>
-          <button type="submit" disabled={tailoring}>
-            {tailoring ? 'Tailoring…' : 'Tailor resume'}
-          </button>
-        </form>
-      </section>
+      <div className="resume-detail-grid">
+        <section className="resume-detail-card">
+          <h2>Download PDF</h2>
+          <p className="resume-detail-subtitle">
+            Choose a template from your API and download a recruiter‑ready PDF.
+          </p>
+          <div className="download-row">
+            <label htmlFor="template" className="download-label">
+              Template
+            </label>
+            <select
+              id="template"
+              value={template}
+              onChange={(e) => setTemplate(e.target.value)}
+              className="download-select"
+            >
+              <option value="template1">Template 1</option>
+              <option value="template2">Template 2</option>
+              <option value="template3">Template 3</option>
+              <option value="template4">Template 4</option>
+            </select>
+            <button
+              type="button"
+              onClick={handleDownload}
+              disabled={downloading}
+              className="btn primary download-button"
+            >
+              {downloading ? 'Downloading…' : 'Download PDF'}
+            </button>
+          </div>
+        </section>
+
+        <section className="resume-detail-card">
+          <h2>Tailor to job description</h2>
+          <p className="resume-detail-subtitle">
+            Paste a job posting and we&apos;ll use your API to tailor this CV to that role.
+          </p>
+          <form onSubmit={handleTailor} className="auth-form tailor-form">
+            <div className="auth-field">
+              <label htmlFor="jobDescription">Job description</label>
+              <textarea
+                id="jobDescription"
+                value={tailorJobDescription}
+                onChange={(e) => setTailorJobDescription(e.target.value)}
+                rows={4}
+                placeholder="Paste the job posting here…"
+                required
+              />
+            </div>
+            <button type="submit" disabled={tailoring} className="btn primary auth-submit">
+              {tailoring ? 'Tailoring…' : 'Tailor resume'}
+            </button>
+          </form>
+        </section>
+      </div>
     </div>
   );
 }
