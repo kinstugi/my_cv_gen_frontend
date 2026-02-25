@@ -201,11 +201,76 @@
   gap: 1.5rem;
 }
 
+.resume-builder-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.resume-builder-layout > .resume-form,
+.resume-builder-layout > .resume-preview-pane {
+  flex: 0 0 50%;
+  max-width: 50%;
+  min-width: 0;
+}
+
 .resume-form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
   max-width: none;
+}
+
+.resume-tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 0.75rem;
+  overflow-x: auto;
+}
+
+.resume-tab {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.resume-tab.active {
+  color: #111827;
+  font-weight: 600;
+}
+
+.resume-tab.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.1rem;
+  height: 2px;
+  border-radius: 999px;
+  background: #111827;
+}
+
+@media (max-width: 900px) {
+  .resume-builder-layout {
+    flex-direction: column;
+  }
+
+  .resume-preview-pane {
+    width: 100%;
+  }
+
+  .resume-builder-layout > .resume-form,
+  .resume-builder-layout > .resume-preview-pane {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 
 .resume-form-card {
@@ -271,6 +336,41 @@
   justify-content: flex-end;
   gap: 0.75rem;
   margin-top: 0.25rem;
+}
+
+.resume-preview-pane {
+  width: 32%;
+  min-width: 260px;
+}
+
+.resume-preview-body {
+  margin-top: 0.5rem;
+}
+
+.resume-preview-title {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.resume-preview-summary {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.resume-preview-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.resume-preview-chip {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
 }
 
 /* Modal for creating resumes */
