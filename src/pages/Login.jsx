@@ -29,37 +29,58 @@ export default function Login() {
   }
 
   return (
-    <div className="page auth-page">
-      <h1>Log in</h1>
-      <form onSubmit={handleSubmit} className="form">
-        {error && <p className="form-error">{error}</p>}
-        <label>
-          Email
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            autoComplete="email"
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            autoComplete="current-password"
-          />
-        </label>
-        <button type="submit" disabled={submitting}>
-          {submitting ? 'Logging in…' : 'Log in'}
-        </button>
-      </form>
-      <p>
-        Don't have an account? <Link to="/register">Register</Link>
-      </p>
+    <div className="auth-shell">
+      <div className="auth-card">
+        <h1 className="auth-title">Sign in</h1>
+        <p className="auth-subtitle">
+          Access your resumes, tailor them to job descriptions, and download polished PDFs.
+        </p>
+
+        <form onSubmit={handleSubmit} className="auth-form">
+          {error && (
+            <div className="auth-alert auth-alert-error">
+              <p>{error}</p>
+            </div>
+          )}
+
+          <div className="auth-field">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              autoComplete="email"
+              placeholder="you@example.com"
+            />
+          </div>
+
+          <div className="auth-field">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete="current-password"
+              placeholder="••••••••"
+            />
+          </div>
+
+          <button type="submit" disabled={submitting} className="btn primary auth-submit">
+            {submitting ? 'Signing in…' : 'Sign in'}
+          </button>
+        </form>
+
+        <p className="auth-footer">
+          Don&apos;t have an account?{' '}
+          <Link to="/register" className="auth-link">
+            Sign up
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

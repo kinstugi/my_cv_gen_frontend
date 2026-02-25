@@ -48,90 +48,83 @@ export default function Register() {
   }
 
   return (
-    <div className="page auth-page">
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit} className="form">
-        {error && <p className="form-error">{error}</p>}
-        <label>
-          First name *
-          <input
-            value={form.firstName}
-            onChange={(e) => update('firstName', e.target.value)}
-            required
-            autoComplete="given-name"
-          />
-        </label>
-        <label>
-          Last name *
-          <input
-            value={form.lastName}
-            onChange={(e) => update('lastName', e.target.value)}
-            required
-            autoComplete="family-name"
-          />
-        </label>
-        <label>
-          Email *
-          <input
-            type="email"
-            value={form.email}
-            onChange={(e) => update('email', e.target.value)}
-            required
-            autoComplete="email"
-          />
-        </label>
-        <label>
-          Password *
-          <input
-            type="password"
-            value={form.password}
-            onChange={(e) => update('password', e.target.value)}
-            required
-            autoComplete="new-password"
-          />
-        </label>
-        <label>
-          Phone
-          <input
-            type="tel"
-            value={form.phoneNumber}
-            onChange={(e) => update('phoneNumber', e.target.value)}
-            placeholder="+1 234 567 8900"
-          />
-        </label>
-        <label>
-          GitHub URL
-          <input
-            type="url"
-            value={form.githubUrl}
-            onChange={(e) => update('githubUrl', e.target.value)}
-            placeholder="https://github.com/username"
-          />
-        </label>
-        <label>
-          Location
-          <input
-            value={form.location}
-            onChange={(e) => update('location', e.target.value)}
-            placeholder="City, Country"
-          />
-        </label>
-        <label>
-          Website
-          <input
-            type="url"
-            value={form.website}
-            onChange={(e) => update('website', e.target.value)}
-            placeholder="https://yoursite.com"
-          />
-        </label>
-        <button type="submit" disabled={submitting}>
-          {submitting ? 'Registering…' : 'Register'}
-        </button>
-      </form>
-      <p>
-        Already have an account? <Link to="/login">Log in</Link>
-      </p>
+    <div className="auth-shell">
+      <div className="auth-card">
+        <h1 className="auth-title">Create your account</h1>
+        <p className="auth-subtitle">
+          Start building job‑ready CVs, keep multiple versions in sync, and export PDFs in one place.
+        </p>
+
+        <form onSubmit={handleSubmit} className="auth-form">
+          {error && (
+            <div className="auth-alert auth-alert-error">
+              <p>{error}</p>
+            </div>
+          )}
+
+          <div className="auth-field-row">
+            <div className="auth-field">
+              <label htmlFor="firstName">First name</label>
+              <input
+                id="firstName"
+                value={form.firstName}
+                onChange={(e) => update('firstName', e.target.value)}
+                required
+                autoComplete="given-name"
+                placeholder="First name"
+              />
+            </div>
+            <div className="auth-field">
+              <label htmlFor="lastName">Last name</label>
+              <input
+                id="lastName"
+                value={form.lastName}
+                onChange={(e) => update('lastName', e.target.value)}
+                required
+                autoComplete="family-name"
+                placeholder="Last name"
+              />
+            </div>
+          </div>
+
+          <div className="auth-field">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              value={form.email}
+              onChange={(e) => update('email', e.target.value)}
+              required
+              autoComplete="email"
+              placeholder="you@example.com"
+            />
+          </div>
+
+          <div className="auth-field">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={form.password}
+              onChange={(e) => update('password', e.target.value)}
+              required
+              autoComplete="new-password"
+              placeholder="At least 6 characters"
+            />
+          </div>
+
+          <button type="submit" disabled={submitting} className="btn primary auth-submit">
+            {submitting ? 'Creating account…' : 'Create account'}
+          </button>
+        </form>
+
+        <p className="auth-footer">
+          Already have an account?{' '}
+          <Link to="/login" className="auth-link">
+            Sign in
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
