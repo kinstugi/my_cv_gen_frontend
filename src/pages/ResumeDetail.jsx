@@ -171,13 +171,13 @@ export default function ResumeDetail() {
       </div>
       {error && <p className="form-error">{error}</p>}
 
-      <section className="resume-detail-card resume-view-preview">
+      <div className="resume-view-preview">
         {TemplateComponent && previewModel ? (
           <TemplateComponent model={previewModel} />
         ) : (
           <p className="muted">Select a template to preview your CV.</p>
         )}
-      </section>
+      </div>
 
       <div className="resume-detail-grid">
         <section className="resume-detail-card">
