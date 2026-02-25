@@ -3,6 +3,9 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { apiGet, apiDelete, apiGetBlob, apiPost } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { getTemplate, getTemplateIds } from '../templates/index.js';
+import editIcon from '../assets/icons/edit.svg';
+import deleteIcon from '../assets/icons/delete.svg';
+import downloadIcon from '../assets/icons/file-download.svg';
 
 const defaultTemplateId = 'template1';
 
@@ -120,23 +123,8 @@ export default function ResumeDetail() {
           <p className="muted">View with a template, switch to see how it looks, then download PDF or tailor.</p>
         </div>
         <div className="actions">
-          <Link to={`/resumes/${id}/edit`} className="btn">
-            Edit
-          </Link>
-          <button type="button" onClick={handleDelete} className="btn danger">
-            Delete
-          </button>
-        </div>
-      </div>
-      {error && <p className="form-error">{error}</p>}
-
-      <section className="resume-detail-card resume-view-toolbar">
-        <div className="resume-view-template-row">
-          <label htmlFor="resume-view-template" className="resume-view-template-label">
-            Preview template
-          </label>
           <select
-            id="resume-view-template"
+            aria-label="Preview template"
             value={template}
             onChange={(e) => setTemplate(e.target.value)}
             className="resume-view-template-select"
@@ -147,8 +135,41 @@ export default function ResumeDetail() {
               </option>
             ))}
           </select>
+          <button
+            type="button"
+            onClick={handleDownload}
+            disabled={downloading}
+            className={`btn icon-button ${downloading ? 'icon-button-loading' : ''}`}
+            title={downloading ? 'Downloading…' : 'Download PDF'}
+            aria-label={downloading ? 'Downloading PDF…' : 'Download PDF'}
+            aria-busy={downloading}
+          >
+            {downloading ? (
+              <span className="icon-button-spinner" aria-hidden="true" />
+            ) : (
+              <img src={downloadIcon} alt="" />
+            )}
+          </button>
+          <Link
+            to={`/resumes/${id}/edit`}
+            className="btn icon-button"
+            title="Edit"
+            aria-label="Edit resume"
+          >
+            <img src={editIcon} alt="" />
+          </Link>
+          <button
+            type="button"
+            onClick={handleDelete}
+            className="btn icon-button icon-button-danger"
+            title="Delete"
+            aria-label="Delete resume"
+          >
+            <img src={deleteIcon} alt="" />
+          </button>
         </div>
-      </section>
+      </div>
+      {error && <p className="form-error">{error}</p>}
 
       <section className="resume-detail-card resume-view-preview">
         {TemplateComponent && previewModel ? (
@@ -159,23 +180,6 @@ export default function ResumeDetail() {
       </section>
 
       <div className="resume-detail-grid">
-        <section className="resume-detail-card">
-          <h2>Download PDF</h2>
-          <p className="resume-detail-subtitle">
-            Download a PDF using the template selected above.
-          </p>
-          <div className="download-row">
-            <button
-              type="button"
-              onClick={handleDownload}
-              disabled={downloading}
-              className="btn primary download-button"
-            >
-              {downloading ? 'Downloading…' : 'Download PDF'}
-            </button>
-          </div>
-        </section>
-
         <section className="resume-detail-card">
           <h2>Tailor to job description</h2>
           <p className="resume-detail-subtitle">
