@@ -1,17 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { apiGet, apiDelete, apiGetBlob, apiPost } from '../api/client.js';
+import { useAuth } from '../context/AuthContext.jsx';
+import { getTemplate, getTemplateIds } from '../templates/index.js';
+
+const defaultTemplateId = 'template1';
 
 export default function ResumeDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [resume, setResume] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [tailorJobDescription, setTailorJobDescription] = useState('');
   const [tailoring, setTailoring] = useState(false);
   const [downloading, setDownloading] = useState(false);
-  const [template, setTemplate] = useState('template1');
+  const templateIds = getTemplateIds();
+  const [template, setTemplate] = useState(() => (templateIds.includes(defaultTemplateId) ? defaultTemplateId : templateIds[0] || 'template1'));
 
   useEffect(() => {
     let cancelled = false;
@@ -23,6 +29,37 @@ export default function ResumeDetail() {
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, [id]);
+
+  const previewModel = useMemo(() => {
+    if (!resume) return null;
+    const name = user?.firstName && user?.lastName
+      ? `${user.firstName} ${user.lastName}`.trim()
+      : user?.firstName || user?.lastName || user?.name || '';
+    return {
+      name,
+      title: resume.title ?? '',
+      description: resume.description ?? '',
+      imageUrl: resume.imageUrl ?? '',
+      phone: user?.phone ?? '',
+      email: user?.email ?? '',
+      location: user?.location ?? '',
+      githubUrl: user?.githubUrl ?? '',
+      website: user?.website ?? '',
+      workExperiences: resume.workExperiences ?? [],
+      projects: resume.projects ?? [],
+      educations: resume.educations ?? [],
+      skills: resume.skills ?? [],
+      languages: resume.languages ?? [],
+    };
+  }, [resume, user]);
+
+  const TemplateComponent = getTemplate(template);
+
+  useEffect(() => {
+    if (templateIds.length > 0 && !templateIds.includes(template)) {
+      setTemplate(templateIds[0]);
+    }
+  }, [templateIds.join(','), template]);
 
   async function handleDelete() {
     if (!confirm('Soft-delete this resume?')) return;
@@ -80,7 +117,7 @@ export default function ResumeDetail() {
       <div className="page-header">
         <div>
           <h1>{resume.title}</h1>
-          <p className="muted">View, download, and tailor this CV for specific roles.</p>
+          <p className="muted">View with a template, switch to see how it looks, then download PDF or tailor.</p>
         </div>
         <div className="actions">
           <Link to={`/resumes/${id}/edit`} className="btn">
@@ -93,89 +130,31 @@ export default function ResumeDetail() {
       </div>
       {error && <p className="form-error">{error}</p>}
 
-      <section className="resume-detail-card">
-        <p className="description">{resume.description}</p>
+      <section className="resume-detail-card resume-view-toolbar">
+        <div className="resume-view-template-row">
+          <label htmlFor="resume-view-template" className="resume-view-template-label">
+            Preview template
+          </label>
+          <select
+            id="resume-view-template"
+            value={template}
+            onChange={(e) => setTemplate(e.target.value)}
+            className="resume-view-template-select"
+          >
+            {templateIds.map((tid) => (
+              <option key={tid} value={tid}>
+                {tid.replace(/^template(\d+)$/i, (_, n) => `Template ${n}`) || tid}
+              </option>
+            ))}
+          </select>
+        </div>
+      </section>
 
-        {resume.workExperiences?.length > 0 && (
-          <section>
-            <h2>Work experience</h2>
-            <ul className="detail-list">
-              {resume.workExperiences.map((w) => (
-                <li key={w.id}>
-                  <strong>{w.position}</strong> at {w.company}
-                  <span className="muted">
-                    {' '}
-                    {w.startDate?.slice(0, 10)} – {w.endDate ? w.endDate.slice(0, 10) : 'Present'}
-                  </span>
-                  <ul>
-                    {(w.description || []).map((d, i) => (
-                      <li key={i}>{d}</li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-
-        {resume.educations?.length > 0 && (
-          <section>
-            <h2>Education</h2>
-            <ul className="detail-list">
-              {resume.educations.map((e) => (
-                <li key={e.id}>
-                  <strong>
-                    {e.degree} {e.fieldOfStudy}
-                  </strong>{' '}
-                  — {e.school}
-                  <span className="muted">
-                    {' '}
-                    {e.startDate?.slice(0, 10)} – {e.endDate?.slice(0, 10) || 'Present'}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-
-        {resume.skills?.length > 0 && (
-          <section>
-            <h2>Skills</h2>
-            <p>{resume.skills.join(', ')}</p>
-          </section>
-        )}
-
-        {resume.languages?.length > 0 && (
-          <section>
-            <h2>Languages</h2>
-            <ul>
-              {resume.languages.map((l) => (
-                <li key={l.id}>
-                  {l.name} — {l.level}
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-
-        {resume.projects?.length > 0 && (
-          <section>
-            <h2>Projects</h2>
-            <ul className="detail-list">
-              {resume.projects.map((p) => (
-                <li key={p.id}>
-                  <strong>{p.title}</strong>
-                  {p.link && (
-                    <a href={p.link} target="_blank" rel="noreferrer">
-                      {' '}
-                      Link
-                    </a>
-                  )}
-                  <p>{p.description}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
+      <section className="resume-detail-card resume-view-preview">
+        {TemplateComponent && previewModel ? (
+          <TemplateComponent model={previewModel} />
+        ) : (
+          <p className="muted">Select a template to preview your CV.</p>
         )}
       </section>
 
@@ -183,23 +162,9 @@ export default function ResumeDetail() {
         <section className="resume-detail-card">
           <h2>Download PDF</h2>
           <p className="resume-detail-subtitle">
-            Choose a template from your API and download a recruiter‑ready PDF.
+            Download a PDF using the template selected above.
           </p>
           <div className="download-row">
-            <label htmlFor="template" className="download-label">
-              Template
-            </label>
-            <select
-              id="template"
-              value={template}
-              onChange={(e) => setTemplate(e.target.value)}
-              className="download-select"
-            >
-              <option value="template1">Template 1</option>
-              <option value="template2">Template 2</option>
-              <option value="template3">Template 3</option>
-              <option value="template4">Template 4</option>
-            </select>
             <button
               type="button"
               onClick={handleDownload}

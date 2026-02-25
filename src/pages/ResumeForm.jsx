@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import { apiGet, apiPost, apiPut } from '../api/client.js';
+import { useAuth } from '../context/AuthContext.jsx';
+import { getTemplate } from '../templates/index.js';
 import ResumeBasicsSection from '../components/ResumeBasicsSection.jsx';
 import ResumeExperienceSection from '../components/ResumeExperienceSection.jsx';
 import ResumeEducationSection from '../components/ResumeEducationSection.jsx';
@@ -103,11 +105,37 @@ export default function ResumeForm() {
     { id: 'projects', label: 'Projects' },
     { id: 'skills', label: 'Skills & languages' },
   ];
+  const { user } = useAuth();
   const [form, setForm] = useState(null);
   const [loading, setLoading] = useState(isEdit);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [activeTab, setActiveTab] = useState('basics');
+
+  const previewModel = useMemo(() => {
+    if (!form) return null;
+    const name = user?.firstName && user?.lastName
+      ? `${user.firstName} ${user.lastName}`.trim()
+      : user?.firstName || user?.lastName || user?.name || '';
+    return {
+      name,
+      title: form.title ?? '',
+      description: form.description ?? '',
+      imageUrl: form.imageUrl ?? '',
+      phone: user?.phone ?? '',
+      email: user?.email ?? '',
+      location: user?.location ?? '',
+      githubUrl: user?.githubUrl ?? '',
+      website: user?.website ?? '',
+      workExperiences: form.workExperiences ?? [],
+      projects: form.projects ?? [],
+      educations: form.educations ?? [],
+      skills: form.skills ?? [],
+      languages: form.languages ?? [],
+    };
+  }, [form, user]);
+
+  const PreviewTemplate = getTemplate('template1');
 
   useEffect(() => {
     if (!isEdit) {
@@ -283,26 +311,28 @@ export default function ResumeForm() {
         </form>
 
         <aside className="resume-preview-pane">
-          <div className="resume-detail-card">
+          <div className="resume-detail-card resume-preview-wrap">
             <h2>Preview</h2>
             <p className="resume-detail-subtitle">
-              Live CV preview will appear here. For now, this shows a simple summary of your inputs.
+              Template 1 – live preview of your CV.
             </p>
             <div className="resume-preview-body">
-              <h3 className="resume-preview-title">
-                {form.title || 'Job title'}
-              </h3>
-              <p className="resume-preview-summary">
-                {form.description || 'Your professional summary will be shown here.'}
-              </p>
-              {form.skills?.length > 0 && (
-                <div className="resume-preview-chips">
-                  {form.skills.filter(Boolean).map((skill, idx) => (
-                    <span key={idx} className="resume-preview-chip">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+              {PreviewTemplate && previewModel ? (
+                <PreviewTemplate model={previewModel} />
+              ) : (
+                <>
+                  <h3 className="resume-preview-title">{form?.title || 'Job title'}</h3>
+                  <p className="resume-preview-summary">
+                    {form?.description || 'Your professional summary will be shown here.'}
+                  </p>
+                  {form?.skills?.length > 0 && (
+                    <div className="resume-preview-chips">
+                      {form.skills.filter(Boolean).map((skill, idx) => (
+                        <span key={idx} className="resume-preview-chip">{skill}</span>
+                      ))}
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>

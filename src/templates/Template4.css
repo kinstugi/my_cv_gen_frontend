@@ -1,0 +1,202 @@
+/* Template4 – tan header bar + two-column body (skills/languages left, main right) */
+
+.cv-template4 {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 10px;
+  color: #000;
+  background: #fff;
+}
+
+.cv-template4-page {
+  max-width: 210mm;
+  margin: 0 auto;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* --- TAN HEADER BAR --- */
+.cv-template4-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding: 30px 50px;
+}
+
+.cv-template4-header-photo {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cv-template4-header-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-template4-header-info {
+  flex: 1;
+  min-width: 0;
+  padding-left: 30px;
+  padding-top: 10px;
+}
+
+.cv-template4-name {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 2px;
+  color: #000;
+}
+
+.cv-template4-title {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+  color: #000;
+}
+
+.cv-template4-contact {
+  margin-top: 10px;
+  font-size: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* --- TWO-COLUMN BODY --- */
+.cv-template4-body {
+  display: flex;
+  padding: 30px 40px;
+  gap: 30px;
+}
+
+.cv-template4-sidebar {
+  width: 170px;
+  flex-shrink: 0;
+}
+
+.cv-template4-spacer {
+  width: 30px;
+  flex-shrink: 0;
+}
+
+.cv-template4-main {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Section title (shared) */
+.cv-template4-section-title {
+  font-size: 11px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: #000;
+}
+
+.cv-template4-sidebar-block .cv-template4-section-title {
+  margin-bottom: 8px;
+}
+
+.cv-template4-sidebar-block {
+  margin-bottom: 0;
+}
+
+.cv-template4-sidebar-block + .cv-template4-sidebar-block {
+  margin-top: 20px;
+}
+
+.cv-template4-sidebar-item {
+  font-size: 9px;
+  margin-bottom: 4px;
+}
+
+/* Main content */
+.cv-template4-summary {
+  font-size: 9px;
+  line-height: 1.2;
+  margin: 0;
+  text-align: justify;
+}
+
+.cv-template4-block {
+  margin-top: 20px;
+}
+
+.cv-template4-block:first-child {
+  margin-top: 0;
+}
+
+.cv-template4-block .cv-template4-section-title {
+  margin-bottom: 8px;
+}
+
+/* Experience */
+.cv-template4-entry {
+  margin-bottom: 15px;
+}
+
+.cv-template4-entry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.cv-template4-entry-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: #000;
+}
+
+.cv-template4-dates {
+  font-size: 8px;
+  flex-shrink: 0;
+}
+
+.cv-template4-entry-sub {
+  font-size: 9px;
+  font-style: italic;
+  margin: 2px 0 0;
+}
+
+.cv-template4-bullets {
+  margin: 4px 0 0 5px;
+  padding-left: 0.5em;
+  font-size: 8px;
+  line-height: 1.1;
+  list-style: none;
+}
+
+.cv-template4-bullets li::before {
+  content: '• ';
+}
+
+/* Education */
+.cv-template4-edu-row {
+  margin-bottom: 10px;
+}
+
+.cv-template4-edu-degree {
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.cv-template4-edu-school {
+  font-size: 8px;
+  margin-top: 2px;
+}
+
+/* Projects */
+.cv-template4-proj {
+  margin-bottom: 10px;
+}
+
+.cv-template4-proj-desc {
+  font-size: 8px;
+  line-height: 1.1;
+  margin: 2px 0 0;
+}

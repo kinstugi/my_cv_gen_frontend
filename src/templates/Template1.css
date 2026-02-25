@@ -1,0 +1,187 @@
+/* Template1 – matches C# QuestPDF Template1 (sidebar + main, Verdana, A4-like) */
+
+.cv-template1 {
+  --t1-text: #333333;
+  --t1-accent: #b29b7d;
+  --t1-sidebar: #e9e5d9;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 9px;
+  color: var(--t1-text);
+  background: #fff;
+}
+
+.cv-template1-page {
+  max-width: 210mm;
+  margin: 0 auto;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cv-template1-row {
+  display: flex;
+  min-height: 297mm;
+}
+
+/* Sidebar ~180pt ≈ 240px */
+.cv-template1-sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cv-template1-photo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.cv-template1-photo {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.cv-template1-sidebar-heading {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--t1-text);
+  margin-bottom: 8px;
+}
+
+.cv-template1-sidebar-block {
+  margin-bottom: 25px;
+}
+
+.cv-template1-sidebar-block:last-child {
+  margin-bottom: 0;
+}
+
+.cv-template1-sidebar-content,
+.cv-template1-list {
+  font-size: 8px;
+  line-height: 1.4;
+  color: var(--t1-text);
+  margin: 0;
+  padding-left: 1em;
+}
+
+.cv-template1-sidebar-content {
+  padding-left: 0;
+}
+
+.cv-template1-list li {
+  margin-bottom: 3px;
+}
+
+.cv-template1-muted {
+  color: #6b7280;
+  font-size: 8px;
+}
+
+/* Main content */
+.cv-template1-main {
+  flex: 1;
+  min-width: 0;
+  padding: 50px 35px;
+}
+
+.cv-template1-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 4px;
+}
+
+.cv-template1-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cv-template1-spacer {
+  height: 25px;
+}
+
+.cv-template1-spacer-sm {
+  height: 15px;
+}
+
+.cv-template1-spacer-lg {
+  height: 30px;
+}
+
+.cv-template1-section {
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 5px;
+  color: var(--t1-text);
+}
+
+.cv-template1-summary {
+  font-size: 9px;
+  line-height: 1.3;
+  margin: 0;
+  text-align: justify;
+}
+
+.cv-template1-entry {
+  margin-bottom: 20px;
+}
+
+.cv-template1-entry:last-child {
+  margin-bottom: 0;
+}
+
+.cv-template1-entry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.cv-template1-entry-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--t1-text);
+}
+
+.cv-template1-entry-sub {
+  font-size: 9px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.cv-template1-bullets {
+  margin: 5px 0 0 8px;
+  padding: 0;
+  font-size: 8.5px;
+  line-height: 1.2;
+}
+
+.cv-template1-bullets li {
+  margin-bottom: 2px;
+}
+
+.cv-template1-desc {
+  font-size: 8.5px;
+  line-height: 1.2;
+  margin: 2px 0 0;
+}
+
+.cv-template1-link {
+  font-size: 8px;
+  color: #2563eb;
+  text-decoration: underline;
+  flex-shrink: 0;
+  max-width: 45%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cv-template1-link:hover {
+  color: #1d4ed8;
+}

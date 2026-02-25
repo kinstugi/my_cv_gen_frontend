@@ -1,0 +1,157 @@
+/* Template3 – single column, centered header, underlined section headers */
+
+.cv-template3 {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 10px;
+  color: #000;
+  background: #fff;
+}
+
+.cv-template3-page {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 40px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cv-template3-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- HEADER --- */
+.cv-template3-header {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.cv-template3-name {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin: 0 0 2px;
+  color: #000;
+}
+
+.cv-template3-title {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+  color: #000;
+}
+
+/* --- CONTACT BAR --- */
+.cv-template3-contact-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  font-size: 9px;
+  margin-bottom: 0;
+}
+
+/* --- SECTION HEADER --- */
+.cv-template3-section-header {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 20px 0 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #000;
+  color: #000;
+}
+
+.cv-template3-section-header:first-of-type {
+  margin-top: 0;
+}
+
+/* --- PROFILE --- */
+.cv-template3-summary {
+  margin: 5px 0 0;
+  font-size: 10px;
+  line-height: 1.2;
+  text-align: justify;
+}
+
+/* --- SKILLS --- */
+.cv-template3-skills {
+  margin: 5px 0 0;
+  font-size: 9px;
+}
+
+/* --- EXPERIENCE --- */
+.cv-template3-entry {
+  margin-top: 10px;
+}
+
+.cv-template3-entry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.cv-template3-entry-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #000;
+}
+
+.cv-template3-dates {
+  font-size: 9px;
+  font-style: italic;
+  color: #4b5563;
+  flex-shrink: 0;
+  min-width: 150px;
+  text-align: right;
+}
+
+.cv-template3-entry-sub {
+  font-size: 10px;
+  font-style: italic;
+  margin: 2px 0 0;
+}
+
+.cv-template3-bullets {
+  margin: 4px 0 0 5px;
+  padding-left: 0.5em;
+  font-size: 9px;
+  list-style: none;
+}
+
+.cv-template3-bullets li::before {
+  content: '• ';
+}
+
+/* --- EDUCATION --- */
+.cv-template3-edu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.cv-template3-edu-row .cv-template3-dates {
+  min-width: 100px;
+}
+
+/* --- PROJECTS --- */
+.cv-template3-desc {
+  margin: 2px 0 0;
+  font-size: 9px;
+}
+
+.cv-template3-link {
+  font-size: 9px;
+  color: #2563eb;
+  text-decoration: underline;
+  flex-shrink: 0;
+  max-width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cv-template3-link:hover {
+  color: #1d4ed8;
+}

@@ -370,6 +370,15 @@
   margin-top: 0.5rem;
 }
 
+.resume-preview-wrap .resume-preview-body {
+  overflow: auto;
+  max-height: calc(100vh - 180px);
+}
+
+.resume-preview-wrap .cv-template1 {
+  min-height: 0;
+}
+
 .resume-preview-title {
   margin: 0 0 0.3rem;
   font-size: 1rem;
@@ -1380,6 +1389,53 @@ section h2 {
   margin: 0 0 1.1rem;
   font-size: 0.9rem;
   color: #6b7280;
+}
+
+/* Resume view: template switcher + preview */
+.resume-view-toolbar {
+  margin-bottom: 0.75rem;
+}
+
+.resume-view-template-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.resume-view-template-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.resume-view-template-select {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.6rem;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  font: inherit;
+  color: #111827;
+  min-width: 160px;
+}
+
+.resume-view-template-select:focus {
+  outline: none;
+  border-color: #111827;
+  box-shadow: 0 0 0 1px #111827;
+}
+
+.resume-view-preview {
+  overflow: auto;
+  max-height: min(calc(100vh - 320px), 900px);
+  margin-bottom: 1.25rem;
+}
+
+.resume-view-preview .cv-template1,
+.resume-view-preview .cv-template2,
+.resume-view-preview .cv-template3,
+.resume-view-preview .cv-template4 {
+  min-height: 0;
 }
 
 .resume-detail-grid {
