@@ -5,7 +5,9 @@ export default function ResumeExperienceSection({
   addWorkDescription,
   onAddExperience,
   onRemoveExperience,
+  onMoveExperience,
 }) {
+  const list = workExperiences || [];
   return (
     <section className="resume-detail-card resume-form-card">
       <div className="resume-section-header">
@@ -17,8 +19,30 @@ export default function ResumeExperienceSection({
           Add your professional roles and highlight results with bullet points.
         </p>
       </div>
-      {(workExperiences || []).map((w, wi) => (
+      {list.map((w, wi) => (
         <fieldset key={wi} className="sub-form">
+          <div className="sub-form-reorder">
+            <button
+              type="button"
+              className="btn icon-button btn-reorder"
+              onClick={() => onMoveExperience?.(wi, wi - 1)}
+              disabled={wi === 0}
+              title="Move up"
+              aria-label="Move this experience up"
+            >
+              ↑
+            </button>
+            <button
+              type="button"
+              className="btn icon-button btn-reorder"
+              onClick={() => onMoveExperience?.(wi, wi + 1)}
+              disabled={wi === list.length - 1}
+              title="Move down"
+              aria-label="Move this experience down"
+            >
+              ↓
+            </button>
+          </div>
           <label>
             Company
             <input

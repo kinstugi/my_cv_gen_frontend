@@ -221,6 +221,27 @@
   margin-top: 0.5rem;
 }
 
+.sub-form-reorder {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  justify-content: flex-end;
+}
+
+.sub-form-reorder .btn-reorder {
+  padding: 0.25rem 0.4rem;
+  min-width: auto;
+  width: auto;
+  height: 1.75rem;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.sub-form-reorder .btn-reorder:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .resume-form .sub-form,
 .resume-form .skill-row {
   margin-bottom: 0.5rem;

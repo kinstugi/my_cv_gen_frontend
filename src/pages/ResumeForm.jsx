@@ -172,6 +172,16 @@ export default function ResumeForm() {
     }));
   };
 
+  const moveWorkExperience = (fromIndex, toIndex) => {
+    if (fromIndex === toIndex) return;
+    setForm((f) => {
+      const work = [...(f.workExperiences || [])];
+      const [removed] = work.splice(fromIndex, 1);
+      work.splice(toIndex, 0, removed);
+      return { ...f, workExperiences: work };
+    });
+  };
+
   const updateWorkDescription = (wi, di, value) => {
     setForm((f) => {
       const work = [...(f.workExperiences || [])];
@@ -266,6 +276,7 @@ export default function ResumeForm() {
             addWorkDescription={addWorkDescription}
             onAddExperience={() => addItem('workExperiences', emptyWork)}
             onRemoveExperience={(index) => removeItem('workExperiences', index)}
+            onMoveExperience={moveWorkExperience}
           />
           )}
 
