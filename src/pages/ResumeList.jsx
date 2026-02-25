@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { apiGet } from '../api/client.js';
+import CreateResumeModal from '../components/CreateResumeModal.jsx';
+import ImportResumeModal from '../components/ImportResumeModal.jsx';
 
 export default function ResumeList() {
+  const navigate = useNavigate();
   const [resumes, setResumes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [page, setPage] = useState(1);
   const [viewMode, setViewMode] = useState('cards'); // 'cards' | 'list'
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
   const pageSize = 10;
 
   useEffect(() => {
@@ -31,6 +36,24 @@ export default function ResumeList() {
   if (error) return <div className="page"><p className="form-error">{error}</p></div>;
 
   const showCards = viewMode === 'cards';
+
+  function openCreateModal() {
+    setIsCreateModalOpen(true);
+  }
+
+  function handleCreateChoice(option) {
+    setIsCreateModalOpen(false);
+    if (option === 'manual') {
+      navigate('/resumes/new');
+    } else if (option === 'import') {
+      setIsImportModalOpen(true);
+    }
+  }
+
+  function handleImportedResume(data) {
+    setIsImportModalOpen(false);
+    navigate('/resumes/new', { state: { importedResume: data } });
+  }
 
   return (
     <div className="page">
@@ -56,7 +79,7 @@ export default function ResumeList() {
               List
             </button>
           </div>
-          <Link to="/resumes/new" className="btn primary">New resume</Link>
+          <button type="button" onClick={openCreateModal} className="btn primary">New resume</button>
         </div>
       </div>
 
@@ -76,7 +99,7 @@ export default function ResumeList() {
           </div>
           <h2>No resumes yet</h2>
           <p>Start with your first CV and reuse it for future applications.</p>
-          <Link to="/resumes/new" className="btn primary">Create your first resume</Link>
+          <button type="button" onClick={openCreateModal} className="btn primary">Create your first resume</button>
         </div>
       ) : showCards ? (
         <div className="resume-grid">
@@ -133,6 +156,17 @@ export default function ResumeList() {
           </button>
         </p>
       )}
+
+      <CreateResumeModal
+        open={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onChoose={handleCreateChoice}
+      />
+      <ImportResumeModal
+        open={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onImported={handleImportedResume}
+      />
     </div>
   );
 }

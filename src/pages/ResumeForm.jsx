@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import { apiGet, apiPost, apiPut } from '../api/client.js';
 
 const emptyWork = () => ({
@@ -87,6 +87,8 @@ function formToPayload(form, isEdit) {
 export default function ResumeForm() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const importedResume = location.state?.importedResume;
   // Route "resumes/new" has no :id param (id is undefined); only "resumes/:id/edit" has id — so create when no id or id is 'new'
   const isEdit = Boolean(id && id !== 'new');
   const [form, setForm] = useState(null);
@@ -96,7 +98,7 @@ export default function ResumeForm() {
 
   useEffect(() => {
     if (!isEdit) {
-      setForm(resumeToForm({}));
+      setForm(resumeToForm(importedResume || {}));
       setLoading(false);
       return;
     }
