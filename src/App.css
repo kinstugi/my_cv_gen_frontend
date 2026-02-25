@@ -194,6 +194,85 @@
   margin-bottom: 0.5rem;
 }
 
+/* Resume builder */
+.resume-builder {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.resume-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: none;
+}
+
+.resume-form-card {
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
+}
+
+.resume-form-card h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.resume-form-card .sub-form {
+  background: #f9fafb;
+  border-color: #e5e7eb;
+}
+
+.resume-form-card .sub-form.inline {
+  background: transparent;
+}
+
+.resume-form-card .sub-form label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.resume-form-card .sub-form input,
+.resume-form-card .sub-form textarea {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.6rem;
+  border: 1px solid #d1d5db;
+  font: inherit;
+  background: #ffffff;
+  color: #111827;
+}
+
+.resume-form-card .sub-form input::placeholder,
+.resume-form-card .sub-form textarea::placeholder {
+  color: #9ca3af;
+}
+
+.resume-form-card .sub-form input:focus,
+.resume-form-card .sub-form textarea:focus {
+  outline: none;
+  border-color: #111827;
+  box-shadow: 0 0 0 1px #111827;
+}
+
+.resume-form-actions-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.resume-skills {
+  margin-bottom: 0.5rem;
+}
+
+.resume-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
 /* Buttons */
 .btn {
   padding: 0.5rem 1rem;
@@ -1089,9 +1168,6 @@ section h2 {
 }
 
 @media (prefers-color-scheme: light) {
-  .nav {
-    /* nav colors handled above */
-  }
   .form input,
   .form textarea {
     background: #ffffff;
