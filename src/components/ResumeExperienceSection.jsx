@@ -8,10 +8,15 @@ export default function ResumeExperienceSection({
 }) {
   return (
     <section className="resume-detail-card resume-form-card">
-      <h2>Work experience</h2>
-      <p className="resume-detail-subtitle">
-        Add your most relevant roles. Use bullet points to highlight impact and results.
-      </p>
+      <div className="resume-section-header">
+        <div className="resume-section-title">
+          <span className="resume-section-icon">💼</span>
+          <h2>Work experience</h2>
+        </div>
+        <p className="resume-detail-subtitle">
+          Add your professional roles and highlight results with bullet points.
+        </p>
+      </div>
       {(workExperiences || []).map((w, wi) => (
         <fieldset key={wi} className="sub-form">
           <label>

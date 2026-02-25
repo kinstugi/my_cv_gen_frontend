@@ -6,7 +6,15 @@ export default function ResumeEducationSection({
 }) {
   return (
     <section className="resume-detail-card resume-form-card">
-      <h2>Education</h2>
+      <div className="resume-section-header">
+        <div className="resume-section-title">
+          <span className="resume-section-icon">🎓</span>
+          <h2>Education</h2>
+        </div>
+        <p className="resume-detail-subtitle">
+          Add your educational background and qualifications.
+        </p>
+      </div>
       {(educations || []).map((e, ei) => (
         <fieldset key={ei} className="sub-form">
           <label>

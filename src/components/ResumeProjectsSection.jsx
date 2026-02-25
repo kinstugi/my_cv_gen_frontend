@@ -6,7 +6,15 @@ export default function ResumeProjectsSection({
 }) {
   return (
     <section className="resume-detail-card resume-form-card">
-      <h2>Projects</h2>
+      <div className="resume-section-header">
+        <div className="resume-section-title">
+          <span className="resume-section-icon">📁</span>
+          <h2>Projects</h2>
+        </div>
+        <p className="resume-detail-subtitle">
+          Showcase key projects and portfolio work that support your CV.
+        </p>
+      </div>
       {(projects || []).map((p, pi) => (
         <fieldset key={pi} className="sub-form">
           <label>
