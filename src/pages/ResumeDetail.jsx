@@ -183,7 +183,7 @@ export default function ResumeDetail() {
         <section className="resume-detail-card">
           <h2>Tailor to job description</h2>
           <p className="resume-detail-subtitle">
-            Paste a job posting and we&apos;ll use your API to tailor this CV to that role.
+            Paste a job posting and we&apos;ll use AI to tailor this CV to that role.
           </p>
           <form onSubmit={handleTailor} className="auth-form tailor-form">
             <div className="auth-field">
