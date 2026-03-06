@@ -136,6 +136,8 @@ export default function ResumeDetail() {
                   ? 'Modern (B/W)'
                   : tid === 'korina'
                     ? 'Korina'
+                    : tid === 'olivia'
+                      ? 'Olivia'
                     : (tid.replace(/^template(\d+)$/i, (_, n) => `Template ${n}`) || tid)}
               </option>
             ))}

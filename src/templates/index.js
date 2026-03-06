@@ -39,6 +39,7 @@ import Template3 from './Template3.jsx';
 import Template4 from './Template4.jsx';
 import ModernBwTemplate from './ModernBwTemplate.jsx';
 import ResumeKorinaTemplate from './ResumeKorinaTemplate.jsx';
+import ResumeOliviaTemplate from './ResumeOliviaTemplate.jsx';
 
 registerTemplate('template1', Template1);
 registerTemplate('template2', Template2);
@@ -46,3 +47,4 @@ registerTemplate('template3', Template3);
 registerTemplate('template4', Template4);
 registerTemplate('modern_bw', ModernBwTemplate);
 registerTemplate('korina', ResumeKorinaTemplate);
+registerTemplate('olivia', ResumeOliviaTemplate);
