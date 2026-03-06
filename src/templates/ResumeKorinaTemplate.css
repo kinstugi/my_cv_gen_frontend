@@ -1,0 +1,245 @@
+/* Korina – clean, two-column, light sidebar */
+
+.cv-korina-shell {
+  background: #e8e8e8;
+  padding: 32px 0;
+  font-family: Georgia, Arial, serif;
+}
+
+.cv-korina-page {
+  max-width: 860px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 6px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: stretch;
+}
+
+.cv-korina-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 24px 36px 28px;
+  gap: 28px;
+}
+
+.cv-korina-avatarWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.cv-korina-avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 54px;
+  color: #888;
+  overflow: hidden;
+}
+
+.cv-korina-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-korina-avatarText {
+  line-height: 1;
+}
+
+.cv-korina-leftHeading {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #111;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+
+.cv-korina-contactRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.cv-korina-contactIcon {
+  font-size: 13px;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.cv-korina-leftText {
+  font-size: 12px;
+  color: #333;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.cv-korina-leftSub {
+  font-size: 11.5px;
+  color: #555;
+  font-style: italic;
+}
+
+.cv-korina-leftMeta {
+  font-size: 11px;
+  color: #777;
+}
+
+.cv-korina-eduRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.cv-korina-dot {
+  margin-top: 3px;
+  font-size: 8px;
+  color: #555;
+  flex-shrink: 0;
+}
+
+.cv-korina-bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  color: #333;
+}
+
+.cv-korina-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+
+.cv-korina-bullets li::before {
+  content: '•';
+  font-size: 14px;
+}
+
+.cv-korina-main {
+  flex: 1;
+  min-width: 0;
+  padding: 36px 40px 40px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-korina-header {
+  margin-bottom: 28px;
+}
+
+.cv-korina-name {
+  font-size: 36px;
+  font-weight: 900;
+  color: #111;
+  font-family: Georgia, serif;
+  line-height: 1.1;
+}
+
+.cv-korina-title {
+  font-size: 13px;
+  color: #888;
+  margin-top: 6px;
+  letter-spacing: 4px;
+}
+
+.cv-korina-divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin-bottom: 24px;
+}
+
+.cv-korina-section {
+  margin-bottom: 28px;
+}
+
+.cv-korina-rightHeading {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #111;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+
+.cv-korina-paragraph {
+  font-size: 12.5px;
+  color: #555;
+  line-height: 1.85;
+  text-align: justify;
+  overflow-wrap: anywhere;
+}
+
+.cv-korina-expItem {
+  margin-bottom: 18px;
+}
+
+.cv-korina-expTitle {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: #111;
+}
+
+.cv-korina-expMeta {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+.cv-korina-expBullets {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12px;
+  color: #555;
+  line-height: 1.75;
+}
+
+.cv-korina-projectGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.cv-korina-projectCard {
+  font-size: 12px;
+  color: #444;
+  min-width: 0;
+}
+
+.cv-korina-projectTitle {
+  font-weight: 700;
+  font-size: 13px;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.cv-korina-projectLink {
+  color: #2563eb;
+  text-decoration: underline;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 6px;
+}
+
+.cv-korina-projectDesc {
+  color: #555;
+  line-height: 1.7;
+}
+

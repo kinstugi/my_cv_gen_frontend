@@ -1,0 +1,252 @@
+/* Modern BW – based on provided mock, but driven by `model` data */
+
+.cv-modernbw-shell {
+  background: #f7fafc;
+  padding: 32px 0;
+}
+
+.cv-modernbw-page {
+  font-family: Georgia, 'Times New Roman', serif;
+  display: flex;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.18);
+  background: #fff;
+}
+
+.cv-modernbw-sidebar {
+  width: 240px;
+  min-width: 240px;
+  background: #2d3748;
+  color: #cbd5e0;
+  padding: 36px 24px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.cv-modernbw-avatarWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.cv-modernbw-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #4a5568;
+  border: 3px solid #4a5568;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cv-modernbw-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-modernbw-avatarText {
+  font-size: 42px;
+  color: #a0aec0;
+}
+
+.cv-modernbw-sideHeading {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  border-bottom: 1px solid #4a5568;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.cv-modernbw-sideLabel {
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.cv-modernbw-sideValue {
+  color: #cbd5e0;
+  font-size: 12px;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+
+.cv-modernbw-eduItem {
+  margin-bottom: 12px;
+}
+
+.cv-modernbw-eduYears {
+  color: #a0aec0;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.cv-modernbw-eduDegree {
+  font-weight: 700;
+  color: #fff;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.cv-modernbw-bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+}
+
+.cv-modernbw-bullets li {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.cv-modernbw-bullets li::before {
+  content: '•';
+  color: #718096;
+  font-size: 10px;
+  transform: translateY(-1px);
+}
+
+.cv-modernbw-bulletsStrong li {
+  color: #fff;
+  font-weight: 700;
+}
+
+.cv-modernbw-main {
+  flex: 1;
+  min-width: 0;
+  padding: 36px 36px 32px 36px;
+}
+
+.cv-modernbw-nameBlock {
+  margin-bottom: 20px;
+}
+
+.cv-modernbw-name {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1a202c;
+  line-height: 1.1;
+  letter-spacing: 1px;
+}
+
+.cv-modernbw-title {
+  color: #718096;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+.cv-modernbw-summary {
+  color: #4a5568;
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.cv-modernbw-mainSection {
+  margin-top: 22px;
+}
+
+.cv-modernbw-mainHeading {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a202c;
+  border-bottom: 1.5px solid #e2e8f0;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+}
+
+.cv-modernbw-expItem {
+  margin-bottom: 18px;
+  display: flex;
+  gap: 14px;
+}
+
+.cv-modernbw-expDot {
+  margin-top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #a0aec0;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.cv-modernbw-expBody {
+  min-width: 0;
+}
+
+.cv-modernbw-expMeta {
+  color: #718096;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.cv-modernbw-expCompany {
+  color: #718096;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.cv-modernbw-expRole {
+  font-weight: 700;
+  color: #1a202c;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.cv-modernbw-expBullets {
+  margin: 0;
+  padding-left: 18px;
+  color: #4a5568;
+  font-size: 11.5px;
+  line-height: 1.7;
+}
+
+.cv-modernbw-proj {
+  margin-bottom: 14px;
+}
+
+.cv-modernbw-projTitleRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.cv-modernbw-projTitle {
+  font-weight: 700;
+  color: #1a202c;
+  font-size: 13px;
+}
+
+.cv-modernbw-projLink {
+  color: #2563eb;
+  text-decoration: underline;
+  font-size: 11.5px;
+  max-width: 45%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cv-modernbw-projDesc {
+  color: #4a5568;
+  font-size: 11.5px;
+  line-height: 1.7;
+  margin-top: 4px;
+}
+

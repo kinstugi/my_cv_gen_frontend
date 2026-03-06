@@ -57,6 +57,7 @@ export default function ResumeDetail() {
   }, [resume, user]);
 
   const TemplateComponent = getTemplate(template);
+  const isDownloadableTemplate = /^template\d+$/i.test(template);
 
   useEffect(() => {
     if (templateIds.length > 0 && !templateIds.includes(template)) {
@@ -131,17 +132,33 @@ export default function ResumeDetail() {
           >
             {templateIds.map((tid) => (
               <option key={tid} value={tid}>
-                {tid.replace(/^template(\d+)$/i, (_, n) => `Template ${n}`) || tid}
+                {tid === 'modern_bw'
+                  ? 'Modern (B/W)'
+                  : tid === 'korina'
+                    ? 'Korina'
+                    : (tid.replace(/^template(\d+)$/i, (_, n) => `Template ${n}`) || tid)}
               </option>
             ))}
           </select>
           <button
             type="button"
             onClick={handleDownload}
-            disabled={downloading}
+            disabled={downloading || !isDownloadableTemplate}
             className={`btn icon-button ${downloading ? 'icon-button-loading' : ''}`}
-            title={downloading ? 'Downloading…' : 'Download PDF'}
-            aria-label={downloading ? 'Downloading PDF…' : 'Download PDF'}
+            title={
+              !isDownloadableTemplate
+                ? 'This template is preview-only (not available for PDF download yet)'
+                : downloading
+                  ? 'Downloading…'
+                  : 'Download PDF'
+            }
+            aria-label={
+              !isDownloadableTemplate
+                ? 'Template is preview-only'
+                : downloading
+                  ? 'Downloading PDF…'
+                  : 'Download PDF'
+            }
             aria-busy={downloading}
           >
             {downloading ? (
