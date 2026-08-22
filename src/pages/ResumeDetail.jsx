@@ -8,6 +8,11 @@ import deleteIcon from '../assets/icons/delete.svg';
 import downloadIcon from '../assets/icons/file-download.svg';
 
 const defaultTemplateId = 'template1';
+const backendTemplateIds = {
+  modern_bw: 'template5',
+  korina: 'template6',
+  olivia: 'template7',
+};
 
 export default function ResumeDetail() {
   const { id } = useParams();
@@ -57,7 +62,7 @@ export default function ResumeDetail() {
   }, [resume, user]);
 
   const TemplateComponent = getTemplate(template);
-  const isDownloadableTemplate = /^template\d+$/i.test(template);
+  const isDownloadableTemplate = Boolean(backendTemplateIds[template] || /^template\d+$/i.test(template));
 
   useEffect(() => {
     if (templateIds.length > 0 && !templateIds.includes(template)) {
@@ -79,7 +84,8 @@ export default function ResumeDetail() {
     setDownloading(true);
     setError('');
     try {
-      const blob = await apiGetBlob(`/api/resumes/${id}/download`, { template });
+      const downloadTemplate = backendTemplateIds[template] ?? template;
+      const blob = await apiGetBlob(`/api/resumes/${id}/download`, { template: downloadTemplate });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
       a.download = `resume-${id}.pdf`;
@@ -149,7 +155,7 @@ export default function ResumeDetail() {
             className={`btn icon-button ${downloading ? 'icon-button-loading' : ''}`}
             title={
               !isDownloadableTemplate
-                ? 'This template is preview-only (not available for PDF download yet)'
+                 ? 'This template is preview-only (not available for PDF download yet)'
                 : downloading
                   ? 'Downloading…'
                   : 'Download PDF'
